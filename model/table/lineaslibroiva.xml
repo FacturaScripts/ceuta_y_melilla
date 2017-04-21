@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : lineaslibroiva.xml
+    Description:
+        Estructura de la tabla lineaslibroiva.
+-->
+<tabla>
+   <columna>
+      <nombre>id</nombre>
+      <tipo>serial</tipo>
+      <nulo>NO</nulo>
+      <defecto>nextval('lineaslibroiva_id_seq'::regclass)</defecto>
+   </columna>
+   <columna>
+      <nombre>idasiento</nombre>
+      <tipo>integer</tipo>
+      <nulo>NO</nulo>
+   </columna>
+   <columna>
+      <nombre>idpartida</nombre>
+      <tipo>integer</tipo>
+      <nulo>NO</nulo>
+   </columna>
+   <columna>
+      <nombre>codejercicio</nombre>
+      <tipo>character varying(4)</tipo>
+      <nulo>NO</nulo>
+   </columna>
+   <columna>
+      <nombre>tipo</nombre>
+      <tipo>character varying(6)</tipo>
+   </columna>
+   <columna>
+      <nombre>fecha</nombre>
+      <tipo>date</tipo>
+   </columna>
+   <columna>
+      <nombre>numero</nombre>
+      <tipo>integer</tipo>
+   </columna>
+   <columna>
+      <nombre>codserie</nombre>
+      <tipo>character varying(2)</tipo>
+   </columna>
+   <columna>
+      <nombre>cifnif</nombre>
+      <tipo>character varying(20)</tipo>
+   </columna>
+   <columna>
+      <nombre>nombre</nombre>
+      <tipo>character varying(255)</tipo>
+   </columna>
+   <columna>
+      <nombre>importe</nombre>
+      <tipo>double precision</tipo>
+   </columna>
+   <columna>
+      <nombre>baseimponible</nombre>
+      <tipo>double precision</tipo>
+   </columna>
+   <columna>
+      <nombre>iva</nombre>
+      <tipo>double precision</tipo>
+   </columna>
+   <columna>
+      <nombre>totaliva</nombre>
+      <tipo>double precision</tipo>
+   </columna>
+   <restriccion>
+      <nombre>ca_lineaslibroiva_co_partidas</nombre>
+      <consulta>FOREIGN KEY (idpartida)
+      REFERENCES co_partidas (idpartida)
+      ON DELETE CASCADE ON UPDATE CASCADE</consulta>
+   </restriccion>
+   <restriccion>
+      <nombre>lineaslibroiva_pkey</nombre>
+      <consulta>PRIMARY KEY (id)</consulta>
+   </restriccion>
+</tabla>

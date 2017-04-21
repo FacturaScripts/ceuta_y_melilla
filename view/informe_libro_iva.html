@@ -1,0 +1,87 @@
+{include="header"}
+
+{if="$fsc->url_recarga!=''"}
+<script type="text/javascript">
+   $(document).ready(function() {
+      window.location.href = '{$fsc->url_recarga}';
+   });
+</script>
+{/if}
+
+<div class="container">
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="page-header">
+            <h1>
+               <span class="glyphicon glyphicon-book"></span>&nbsp; Libros de {#FS_IVA#}
+               <a class="btn btn-xs btn-default" href="{$fsc->url()}" title="Recargar la página">
+                  <span class="glyphicon glyphicon-refresh"></span>
+               </a>
+               <span class="btn-group">
+                  {loop="$fsc->extensions"}
+                     {if="$value->type=='button'"}
+                     <a href="index.php?page={$value->from}{$value->params}" class="btn btn-xs btn-default">{$value->text}</a>
+                     {/if}
+                  {/loop}
+               </span>
+            </h1>
+            <p class="help-block">
+               Selecciona un ejercicio, un libro y las fechas inicial y final.
+               Para el correcto funcionamiento, debes tener <a href="https://www.facturascripts.com/foro/configurar-el-cron-de-facturascripts-9.html" target="_blank">configurado el cron</a>.
+            </p>
+         </div>
+         {loop="$fsc->ejercicios"}
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Ejercicio {$value->nombre}</h3>
+            </div>
+            <div class="panel-body">
+               <div class="row">
+                  <form action="{$fsc->url()}" method="post" target="_blank" class="form">
+                     <input type="hidden" name="codejercicio" value="{$value->codejercicio}"/>
+                     <div class="col-sm-3">
+                        <div class="form-group">
+                           Libro:
+                           <select name="tipo" class="form-control">
+                              <option value="IVASOP">Facturas recibidas</option>
+                              <option value="IVAREP">Facturas emitidas</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           Desde:
+                           <input type="text" name="desde" value="{$value->fechainicio}" class="form-control datepicker" autocomplete="off"/>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           Hasta:
+                           <input type="text" name="hasta" value="{$value->fechafin}" class="form-control datepicker" autocomplete="off"/>
+                        </div>
+                     </div>
+                     <div class="col-sm-5 text-right">
+                        <br/>
+                        <button type="submit" class="btn btn-sm btn-primary">
+                           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> &nbsp; Mostrar
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         {else}
+         <div class="panel panel-warning">
+            <div class="panel-heading">
+               <h3 class="panel-title">Ejercicios</h3>
+            </div>
+            <div class="panel-body">
+               Los libros de IVA están vacíos.
+            </div>
+         </div>
+         {/loop}
+      </div>
+   </div>
+</div>
+
+{include="footer"}
