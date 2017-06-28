@@ -82,7 +82,7 @@ class admin_ceuta_melilla extends fs_controller {
       if (file_exists(__DIR__)) {
          /// activamos las páginas del plugin
          foreach (scandir(__DIR__) as $f) {
-            if (is_string($f) AND strlen($f) > 0 AND ! is_dir($f) AND $f != __CLASS__ . '.php') {
+            if( $f != '.' AND $f != '..' AND is_string($f) AND strlen($f) > 4 AND !is_dir($f) AND $f != __CLASS__.'.php' ) {
                $page_name = substr($f, 0, -4);
 
                require_once __DIR__ . '/' . $f;
