@@ -29,6 +29,7 @@ class linea_libro_iva extends fs_model
    
    public function __construct($l = FALSE)
    {
+       new partida();
       parent::__construct('lineaslibroiva');
       if($l)
       {
